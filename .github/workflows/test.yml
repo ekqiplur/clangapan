@@ -1,0 +1,20 @@
+name: Test clang
+
+on:
+  workflow_dispatch: {}  # manual trigger
+
+jobs:
+  use-clang:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Clone Slim LLVM
+        run: git clone --depth=1 https://github.com/ekqiplur/clangapan.git llvm-slim
+
+      - name: Add LLVM to PATH
+        run: echo "$GITHUB_WORKSPACE/llvm-slim/bin" >> $GITHUB_PATH
+
+      - name: Test Clang
+        run: clang --version
