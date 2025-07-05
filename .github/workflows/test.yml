@@ -17,4 +17,7 @@ jobs:
         run: echo "$GITHUB_WORKSPACE/llvm-slim/bin" >> $GITHUB_PATH
 
       - name: Test Clang
-        run: clang --version
+        run: |
+          which clang
+          ls -lah llvm-slim/bin/clang
+          clang --version
